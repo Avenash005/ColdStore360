@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface antialiased font-body-md selection:bg-secondary-fixed selection:text-on-secondary-fixed;
+  }
+}

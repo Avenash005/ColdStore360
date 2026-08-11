@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ColdStore360 - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-container": "#7c839b",
+                      "on-tertiary-fixed-variant": "#38485d",
+                      "surface-variant": "#e0e3e5",
+                      "tertiary-container": "#0b1c30",
+                      "on-surface": "#191c1e",
+                      "surface-container-highest": "#e0e3e5",
+                      "inverse-on-surface": "#eff1f3",
+                      "primary-container": "#131b2e",
+                      "on-tertiary-fixed": "#0b1c30",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed-dim": "#bec6e0",
+                      "on-tertiary-container": "#75859d",
+                      "surface-container": "#eceef0",
+                      "outline-variant": "#c6c6cd",
+                      "surface-dim": "#d8dadc",
+                      "background": "#f7f9fb",
+                      "primary-fixed": "#dae2fd",
+                      "outline": "#76777d",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "secondary-fixed": "#d8e2ff",
+                      "inverse-primary": "#bec6e0",
+                      "primary": "#000000",
+                      "on-primary-fixed": "#131b2e",
+                      "on-error-container": "#93000a",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed": "#d3e4fe",
+                      "surface-tint": "#565e74",
+                      "on-background": "#191c1e",
+                      "secondary": "#0058be",
+                      "surface-bright": "#f7f9fb",
+                      "on-secondary-fixed-variant": "#004395",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed": "#001a42",
+                      "on-surface-variant": "#45464d",
+                      "tertiary-fixed-dim": "#b7c8e1",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "surface": "#f7f9fb",
+                      "inverse-surface": "#2d3133",
+                      "tertiary": "#000000",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#f2f4f6",
+                      "secondary-container": "#2170e4",
+                      "on-secondary-container": "#fefcff",
+                      "error": "#ba1a1a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sidebar-width": "240px",
+                      "row-height-md": "44px",
+                      "row-height-sm": "32px",
+                      "container-padding": "24px",
+                      "element-gap": "12px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "mono-sm": [
+                              "jetbrainsMono"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.015em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display": [
+                              "30px",
+                              {
+                                      "lineHeight": "38px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "mono-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface h-full flex font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<main class="flex w-full h-full">
+<!-- Left Side: Image / Branding -->
+<div class="hidden lg:flex w-1/2 bg-tertiary-container relative overflow-hidden items-center justify-center">
+<div class="absolute inset-0 bg-cover bg-center opacity-60" data-alt="A highly detailed, ultra-realistic photograph of a modern, massive industrial cold storage warehouse interior. High rack shelving stretches into the distance, filled with neatly stacked pallets wrapped in pristine plastic film. The lighting is cool, bright, and perfectly balanced, highlighting the clean, systematic layout and technical precision of the facility. The overall atmosphere conveys immense scale, operational efficiency, and deep technological integration in logistics, matching a clean enterprise light-mode aesthetic with deep blue and white hues." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfGJ2MHZ2bt-QQd483gSgjPWCpI13W8kBlzlfudj4UjjzSD7Ksdmey8u1DzdYptHhZFejcaz6og7PpdgKPVjG0IEOrcjsGO6f72IC66iAMuRhgpLvbsDcm3F2WOu0JOHU6fteDW4dla5vrw8jlj5g32Nj3uAVSmTxCHuVM5OyxAOo-M2BwCb89jS5QXc7Utba6yDqyG7Wvhn7NjkaxIEec2kFPasJQub8XOJxgAbKdOWjaHQvaSukC')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-tertiary-container to-transparent opacity-80"></div>
+<div class="relative z-10 text-on-tertiary p-12 max-w-lg">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-4xl" data-icon="ac_unit" data-weight="fill" style="font-variation-settings: 'FILL' 1;">ac_unit</span>
+<h1 class="font-display text-display font-black tracking-tight text-on-tertiary">ColdStore360</h1>
+</div>
+<p class="font-headline-lg text-headline-lg font-light mb-6">Cold Storage Operations Platform</p>
+<p class="font-body-lg text-body-lg text-tertiary-fixed-dim">Industrial precision and high-utility warehouse management engineered for performance and data density.</p>
+</div>
+</div>
+<!-- Right Side: Login Form -->
+<div class="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-24 bg-surface-container-lowest">
+<div class="w-full max-w-md">
+<div class="mb-10 lg:hidden flex flex-col items-center">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="ac_unit" data-weight="fill" style="font-variation-settings: 'FILL' 1;">ac_unit</span>
+<h1 class="font-headline-lg text-headline-lg font-black text-on-surface">ColdStore360</h1>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-center">Cold Storage Operations Platform</p>
+</div>
+<div class="mb-8">
+<h2 class="font-headline-lg text-headline-lg mb-2">Sign In</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Access your dashboard and manage operations.</p>
+</div>
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface" for="email">Email Address</label>
+<input class="w-full h-11 bg-surface-container-lowest border border-surface-variant text-on-surface rounded-DEFAULT px-4 font-body-md text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none transition-colors" id="email" placeholder="operator@coldstore360.com" required="" type="email"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="block font-label-md text-label-md text-on-surface" for="password">Password</label>
+<a class="font-label-md text-label-md text-secondary hover:text-on-secondary-fixed-variant transition-colors" href="#">Forgot Password?</a>
+</div>
+<input class="w-full h-11 bg-surface-container-lowest border border-surface-variant text-on-surface rounded-DEFAULT px-4 font-body-md text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none transition-colors" id="password" placeholder="••••••••" required="" type="password"/>
+</div>
+<button class="w-full h-11 bg-primary text-on-primary font-label-md text-label-md rounded-DEFAULT hover:bg-tertiary-container transition-colors flex items-center justify-center gap-2" type="submit">
+                        Sign In
+                        <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<div class="mt-8">
+<div class="relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-surface-variant"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-2 bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md">Or continue with</span>
+</div>
+</div>
+<div class="mt-6">
+<button class="w-full h-11 bg-surface-container-lowest border border-surface-variant text-on-surface font-label-md text-label-md rounded-DEFAULT hover:bg-surface-container-low transition-colors flex items-center justify-center gap-3">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                            Sign in with Google
+                        </button>
+</div>
+</div>
+<p class="mt-8 text-center font-body-md text-body-md text-on-surface-variant">
+                    Don't have an account? <a class="font-label-md text-label-md text-primary hover:text-secondary transition-colors underline underline-offset-2" href="#">Sign Up</a>
+</p>
+</div>
+</div>
+</main>
+</body></html>
