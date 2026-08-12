@@ -1,76 +1,133 @@
-# ColdStore360 Operations Suite
+# ColdStore360
 
-ColdStore360 is a production-ready Web Application tailored specifically for cold storage warehousing and logistics. It is designed to handle inward/outward logistics, inventory tracking, financial billing (invoicing), and physical stock reconciliation (discrepancies).
+ColdStore360 is a web application for operating a cold-storage warehouse. It brings stock receiving, location-aware inventory, dispatches, billing, reconciliation, and reporting into one role-protected workspace.
 
-## Tech Stack
-- **Frontend Framework**: React 18 with Vite
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS (v3) + Material Design 3 guidelines
-- **State Management**: React Query (`@tanstack/react-query`)
-- **Backend/Database**: Supabase (PostgreSQL, Auth, Realtime)
-- **Icons**: Material Symbols Outlined
+## Contents
 
-## Key Features
+- [Capabilities](#capabilities)
+- [Technology](#technology)
+- [Project structure](#project-structure)
+- [Getting started](#getting-started)
+- [Database setup](#database-setup)
+- [Scripts](#scripts)
+- [Security and data integrity](#security-and-data-integrity)
+- [Contributing](#contributing)
 
-1. **Dashboard & Real-time Alerts**
-   - A live operational summary of warehouse capacity, inward/outward volumes, and recent activity.
-   - Powered by Supabase Realtime, the dashboard displays toast notifications immediately when an inventory transaction occurs.
+## Capabilities
 
-2. **Inward & Outward Logistics**
-   - Form-based workflows for logging goods entering and leaving the warehouse.
-   - Automatically computes remaining available stock and updates batch statuses.
+### Warehouse operations
 
-3. **Inventory Management**
-   - View all current stock batches, filter by trader, and check available vs received quantities.
-   - Detailed ledger of every single transaction (Inward, Outward, Adjustment) tied to a batch.
+- Receive stock against a trader and product, then place it in a specific room and slot.
+- Dispatch stock, transfer it between locations, and retain a transaction history for every batch.
+- Track capacity at both room and slot level, including available, occupied, full, maintenance, and inactive states.
+- Inspect inventory by batch, trader, product, room, or slot.
 
-4. **Billing & Invoicing**
-   - A Finance module that calculates storage duration (days) automatically.
-   - Generates invoices ensuring that a batch is only billed once after it is `FULLY_DISPATCHED`.
+### Business management
 
-5. **Discrepancy & Reconciliation**
-   - Dedicated module for physical stock counts.
-   - Automatically detects shortages/excesses, corrects the system ledger with an `ADJUSTMENT` transaction, and records an Audit Log for accountability.
+- Manage traders, products, storage rooms, and slots.
+- Create invoices and calculate storage duration for dispatched batches.
+- Reconcile physical counts with system inventory and create accountable adjustment records.
+- View operational dashboards, reports, recent activity, and real-time inventory alerts.
 
-6. **Authentication & Security**
-   - Row Level Security (RLS) is enabled to protect data.
-   - Protected routes ensure that only authenticated users can access the dashboard.
-   - Auto-provisioning of user profiles via database triggers upon registration.
+### Access control
 
-## Getting Started
+- Email/password authentication through Supabase Auth.
+- Protected application routes.
+- Role-based database access policies for administrators, managers, gate staff, and warehouse staff.
+
+## Technology
+
+| Area | Tools |
+| --- | --- |
+| Client | React 19, TypeScript, Vite |
+| Routing | React Router |
+| Data fetching | TanStack Query |
+| Forms and validation | React Hook Form, Zod |
+| UI and charts | Tailwind CSS, Lucide React, Recharts |
+| Backend | Supabase (PostgreSQL, Auth, Realtime, Row Level Security) |
+
+## Project structure
+
+```text
+.
+├── public/                 # Static assets
+├── src/
+│   ├── components/         # Shared UI, layout, authentication, and inventory components
+│   ├── contexts/           # Auth context
+│   ├── lib/                # Supabase client and API helpers
+│   └── pages/              # Feature pages and routed views
+├── supabase/
+│   ├── migrations/         # Versioned PostgreSQL schema and policy changes
+│   ├── seed.sql            # Optional demo warehouse data
+│   └── README.md           # Database setup and operational guidance
+└── package.json
+```
+
+## Getting started
 
 ### Prerequisites
-- Node.js (v18+)
-- Supabase Project (Local or Hosted)
 
-### Setup
+- Node.js 18 or later
+- A Supabase project
 
-1. **Install Dependencies**
-   ```bash
-   npm install
-   ```
+### 1. Install dependencies
 
-2. **Environment Variables**
-   Create a `.env` file in the root directory and add your Supabase credentials:
-   ```env
-   VITE_SUPABASE_URL=your_supabase_url
-   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-   ```
+```bash
+npm install
+```
 
-3. **Database Setup**
-   Run the SQL scripts in the `supabase/` folder in this order using your Supabase SQL Editor:
-   - `migrations/20260810120000_initial_schema.sql` (Schema Creation)
-   - `auth_setup.sql` (Security & Triggers)
-   - `seed.sql` (Mock Data - Traders, Products, Inventory)
-   - `seed_billing.sql` (Mock Data - Billing & Invoices)
+### 2. Configure environment variables
 
-4. **Start Development Server**
-   ```bash
-   npm run dev
-   ```
-   Open `http://localhost:5173` in your browser.
+Create a `.env` file in the project root:
 
-## Architecture Notes
-- All API calls to Supabase are centralized in `src/lib/api.ts`.
-- `AuthContext.tsx` provides global access to the current logged-in user.
-- UI Components heavily utilize Material Design 3 (MD3) design tokens (Surface, Primary, Error) via Tailwind configurations.
+```env
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```
+
+Never commit `.env` files or Supabase service-role keys. The `.gitignore` already excludes `.env`.
+
+### 3. Apply the database schema
+
+For a new project, apply the migrations through `20260811120000_staff_product_creation_policy.sql` in timestamp order. The `20260812100000_direct_room_slots.sql` migration is only for existing rack-based databases. The Supabase CLI is recommended for repeatable deployments:
+
+```bash
+npm install -g supabase
+supabase login
+supabase link --project-ref YOUR_PROJECT_REF
+supabase db push
+```
+
+For SQL Editor instructions, optional seed data, and guidance for migrating legacy rack-based databases, see [supabase/README.md](supabase/README.md) and [DIRECT_ROOM_SLOT_MIGRATION.md](supabase/DIRECT_ROOM_SLOT_MIGRATION.md).
+
+### 4. Start the application
+
+```bash
+npm run dev
+```
+
+Open the local URL shown by Vite (normally `http://localhost:5173`). Create an account at `/signup`, then assign an appropriate role in the `profiles` table if required by your deployment.
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server. |
+| `npm run build` | Type-check and build the production bundle. |
+| `npm run lint` | Run Oxlint. |
+| `npm run preview` | Serve a locally built production bundle. |
+
+## Security and data integrity
+
+ColdStore360 relies on Supabase Row Level Security for database-level access control. Inventory movements use database functions to validate active locations and capacity, update occupancy, create inventory transactions, and write audit events together. Avoid changing quantity or capacity columns directly during normal operations; use the receiving, dispatch, transfer, and reconciliation workflows instead.
+
+## Contributing
+
+1. Create a branch from `main`.
+2. Make focused changes and keep database changes in a new timestamped migration.
+3. Run `npm run lint` and `npm run build` before opening a pull request.
+4. Describe any required environment, schema, or deployment changes in the pull request.
+
+## License
+
+No license has been specified for this repository.
